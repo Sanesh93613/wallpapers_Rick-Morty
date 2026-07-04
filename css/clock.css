@@ -1,0 +1,268 @@
+/* ========================================== */
+/* ЧАСЫ — ОСНОВНЫЕ СТИЛИ                      */
+/* ========================================== */
+/* Этот файл содержит стили для:
+   - Блока часов (круглое окно, перетаскивание)
+   - Текста внутри часов (день, время, дата)
+   - Кастомного селекта для выбора шрифта (замена <select>)
+   - Кнопок переключения формата времени (24ч/12ч)
+   - Кнопок выбора слоя часов (z-index)
+*/
+
+/* ------------------------------------------ */
+/* ОСНОВНОЙ БЛОК ЧАСОВ (.planet-clock)        */
+/* ------------------------------------------ */
+.planet-clock {
+    /* ПОЗИЦИОНИРОВАНИЕ */
+    position: fixed;
+
+    /* РАЗМЕРЫ И ФОРМА */
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+
+    /* РАСПОЛОЖЕНИЕ СОДЕРЖИМОГО */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* ОФОРМЛЕНИЕ */
+    color: white;
+    font-family: "Orbitron", monospace;
+    text-shadow: 0 0 6px cyan;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* ПОВЕДЕНИЕ */
+    cursor: grab;
+    user-select: none;
+    pointer-events: auto;
+
+    /* АНИМАЦИИ */
+    transition:
+        box-shadow 0.2s,
+        text-shadow 0.2s,
+        background-color 0.2s;
+}
+
+/* Состояние при перетаскивании */
+.planet-clock:active {
+    cursor: grabbing;
+}
+
+/* ------------------------------------------ */
+/* ТЕКСТЫ ВНУТРИ ЧАСОВ                        */
+/* ------------------------------------------ */
+.clock-day {
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.clock-time {
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.clock-date {
+    font-size: 1.4rem;
+    margin-top: 0;
+}
+
+/* ========================================== */
+/* КАСТОМНЫЙ СЕЛЕКТ ШРИФТОВ                   */
+/* ========================================== */
+.custom-select {
+    position: relative;
+    width: 180px;
+    user-select: none;
+}
+
+.custom-select-trigger {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.custom-select-trigger:hover {
+    background-color: #0056b3;
+}
+
+.custom-select-options {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: #2d2d2d;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    overflow-y: auto;
+    max-height: 250px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-select-options.open {
+    display: block;
+}
+
+.custom-select-options div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+    transition: background 0.1s;
+}
+
+.custom-select-options div:hover {
+    background-color: #007bff;
+}
+
+.custom-select-options .custom-font-divider {
+    cursor: default;
+    color: #888;
+    font-size: 11px;
+    padding: 4px 12px;
+}
+
+.custom-select-options .custom-font-divider:hover {
+    background-color: #2d2d2d;
+}
+
+#custom-font-option {
+    color: #ffaa44;
+}
+
+#custom-font-option:hover {
+    background-color: #ffaa44;
+    color: #2d2d2d;
+}
+
+.custom-font-loaded {
+    background-color: #00aa44 !important;
+}
+
+/* ========================================== */
+/* ПЕРЕКЛЮЧАТЕЛЬ ФОРМАТА ВРЕМЕНИ (24ч/12ч)    */
+/* ========================================== */
+.time-format-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.format-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.format-btn.active {
+    background-color: #00aa44;
+}
+
+.format-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+/* ========================================== */
+/* КАСТОМНЫЙ СЕЛЕКТ СЛОЯ ЧАСОВ                */
+/* ========================================== */
+.custom-select-layer {
+    position: relative;
+    width: 160px;
+    user-select: none;
+}
+
+.custom-select-layer-trigger {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.custom-select-layer-trigger:hover {
+    background-color: #0056b3;
+}
+
+.custom-select-layer-options {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: #2d2d2d;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    overflow-y: auto;
+    max-height: 150px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-select-layer-options.open {
+    display: block;
+}
+
+.custom-select-layer-options div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+    transition: background 0.1s;
+}
+
+.custom-select-layer-options div:hover {
+    background-color: #007bff;
+}
+/* ========================================== */
+/* КАК НАСТРОИТЬ ЧАСЫ ПОД СЕБЯ                */
+/* ========================================== */
+/* 
+   1. РАЗМЕР ЧАСОВ:
+      - width/height в .planet-clock (стандарт 170px)
+      - Или используй ползунок "Размер часов (%)" в настройках
+
+   2. ФОРМА (круг/квадрат):
+      - border-radius: 50% → круг
+      - border-radius: 0% → квадрат
+      - border-radius: 20px → скруглённый квадрат
+
+   3. ПРОЗРАЧНОСТЬ ФОНА:
+      - background: rgba(0,0,0,0.3) → 0.3 = 30% прозрачности
+      - Меняй последнюю цифру от 0 (прозрачно) до 1 (непрозрачно)
+
+   4. РАЗМЫТИЕ ФОНА (стеклянный эффект):
+      - backdrop-filter: blur(4px) → 4px = сила размытия
+
+   5. ЦВЕТ СВЕЧЕНИЯ:
+      - text-shadow: 0 0 6px cyan → цвет свечения
+
+   6. СЛОЙ ЧАСОВ (z-index):
+      - За астероидами → z-index: 5
+      - За звёздами → z-index: 15
+      - Нормальный → z-index: 20
+      - Перед всем → z-index: 100
+*/

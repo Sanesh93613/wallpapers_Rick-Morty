@@ -1,0 +1,30 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "Space with Rick & Morty by @Sanesh93613",
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			}
+		}
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"snapshotformat" : 0,
+	"snapshotoverlay" : "",
+	"tags" : [ "Fantasy" ],
+	"title" : "Rick and Morty by @Sanesh93613",
+	"type" : "web",
+	"version" : 4,
+	"visibility" : "public",
+	"workshopid" : "3410947153",
+	"workshopurl" : "steam://url/CommunityFilePage/3410947153"
+}

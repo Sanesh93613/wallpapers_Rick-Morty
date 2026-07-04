@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- ========================================= -->
+	<!-- ПОДКЛЮЧЕНИЕ СТИЛЕЙ (CSS)                  -->
+	<!-- ========================================= -->
+	<!-- Основной файл с параллакс-эффектами (фоны, анимации) -->
+	<link rel="stylesheet" href="css/parallax.css">
+
+	<!-- Стили для всех кнопок (размеры, цвета, анимации наведения) -->
+	<link rel="stylesheet" href="css/buttons.css">
+
+	<!-- Стили для плавающих панелей настроек (прозрачность, позиционирование) -->
+	<link rel="stylesheet" href="css/settings.css">
+
+	<!-- Стили для часов (внешний вид, перетаскивание, кастомный селект) -->
+	<link rel="stylesheet" href="css/clock.css">
+
+	<title>Sanesh93613 WallPaper</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<!-- ========================================= -->
+		<!-- 1. ФОН (ЗВЁЗДНОЕ НЕБО)                    -->
+		<!-- ========================================= -->
+		<!-- Основная картинка космоса (планета, туманность, звёзды) -->
+		<!-- Фиксированный слой, не двигается, находится в самом низу -->
+		<img src="images/parallax/planet-bg.webp" alt="Space" class="space-img">
+
+		<!-- ========================================= -->
+		<!-- 2. ГЛАВНАЯ КНОПКА НАСТРОЕК                -->
+		<!-- ========================================= -->
+		<!-- Эта кнопка всегда видна в левом нижнем углу экрана -->
+		<!-- При нажатии открывает меню выбора категорий -->
+		<button class="settings-btn" id="settingsBtn">⚙️ Настройки</button>
+
+		<!-- ========================================= -->
+		<!-- 3. МЕНЮ ВЫБОРА КАТЕГОРИИ                  -->
+		<!-- ========================================= -->
+		<!-- Первое окно, которое появляется при нажатии на шестерёнку -->
+		<!-- Содержит две кнопки: "НЛО и дым" и "Часы" -->
+		<div id="categoryMenu" class="settings-panel">
+			<h3 style="text-align: center; margin-top: 0;">Выберите категорию</h3>
+			<button id="chooseUFO" class="settings-btn">🛸 НЛО и дым</button>
+			<button id="chooseClock" class="settings-btn">🕒 Часы</button>
+		</div>
+
+		<!-- ========================================= -->
+		<!-- 4. ПАНЕЛЬ НАСТРОЕК НЛО И ДЫМА             -->
+		<!-- ========================================= -->
+		<!-- Открывается при выборе "НЛО и дым" в меню -->
+		<div id="ufoSettings" class="settings-panel">
+			<!-- Кнопка "Назад" возвращает в меню выбора категорий -->
+			<button id="backFromUFO" class="settings-btn back-btn">← Назад</button>
+
+			<h3>Настройки НЛО</h3>
+
+			<!-- НАСТРОЙКИ ВНЕШНЕГО ВИДА НЛО -->
+			<div class="form-row">
+				<label>Радиус НЛО:</label>
+				<input type="number" id="squid-radius" value="20" step="1">
+				<!-- Влияет на размер картинки НЛО, 20 = стандартный размер -->
+			</div>
+
+			<div class="form-row">
+				<label>Фактор ширины:</label>
+				<input type="number" id="squid-width-factor" value="15" step="1">
+				<!-- Растягивание НЛО по горизонтали (больше = шире) -->
+			</div>
+
+			<div class="form-row">
+				<label>Фактор высоты:</label>
+				<input type="number" id="squid-height-factor" value="12" step="1">
+				<!-- Растягивание НЛО по вертикали (больше = выше) -->
+			</div>
+
+			<!-- НАСТРОЙКИ ДВИЖЕНИЯ НЛО -->
+			<div class="form-row">
+				<label>Порог дистанции НЛО:</label>
+				<input type="number" id="squid-distance" value="50" step="10">
+				<!-- На каком расстоянии от курсора НЛО начинает поворачивать -->
+			</div>
+
+			<div class="form-row">
+				<label>Скорость НЛО:</label>
+				<input type="number" id="squidSpeed" value="100" step="10">
+				<!-- СКОРОСТЬ: ЧЕМ МЕНЬШЕ ЧИСЛО, ТЕМ БЫСТРЕЕ НЛО -->
+				<!-- 50 = очень быстро, 100 = норма, 200 = медленно -->
+			</div>
+
+			<h3>Настройки дыма</h3>
+
+			<!-- НАСТРОЙКИ ВИЗУАЛА ДЫМА -->
+			<div class="form-row">
+				<label>Размер дыма:</label>
+				<input type="number" id="smoke-size" value="20" step="1">
+				<!-- Размер каждой частицы дыма в пикселях -->
+			</div>
+
+			<div class="form-row">
+				<label>Частота:</label>
+				<input type="number" id="smoke-frequency" value="1" step="1">
+				<!-- Количество частиц дыма за раз (больше = гуще) -->
+			</div>
+
+			<div class="form-row">
+				<label>Угасание:</label>
+				<input type="number" id="smoke-fade" value="0.01" step="0.001">
+				<!-- Скорость исчезновения дыма (меньше = дольше живёт) -->
+			</div>
+
+			<div class="form-row">
+				<label>Разлёт:</label>
+				<input type="number" id="smoke-spread" value="1" step="0.1">
+				<!-- Как широко разлетаются частицы дыма в стороны -->
+			</div>
+
+			<div class="form-row">
+				<label>Цвет дыма:</label>
+				<input type="color" id="smoke-color" value="#ffffff">
+				<!-- HEX цвет дыма (#ffffff = белый, #ff0000 = красный) -->
+			</div>
+
+			<div class="form-row">
+				<label>Дым до курсора:</label>
+				<input type="number" id="distance-threshold" value="100" step="10">
+				<!-- На каком расстоянии до курсора перестаёт идти дым -->
+			</div>
+
+			<button id="reset-button" class="settings-btn reset-btn">Сбросить настройки</button>
+		</div>
+
+		<!-- ========================================= -->
+		<!-- 5. ПАНЕЛЬ НАСТРОЕК ЧАСОВ                  -->
+		<!-- ========================================= -->
+		<!-- Открывается при выборе "Часы" в меню -->
+		<div id="clockSettings" class="settings-panel">
+			<!-- Кнопка "Назад" возвращает в меню выбора категорий -->
+			<button id="backFromClock" class="settings-btn back-btn">← Назад</button>
+
+			<h3>Настройки часов</h3>
+
+			<!-- ВНЕШНИЙ ВИД ЧАСОВ (РАЗМЕР, ФОРМА) -->
+			<div class="form-row">
+				<label>Размер часов (%):</label>
+				<input type="number" id="clock-size-slider" min="50" max="200" step="5" value="100">
+				<!-- Масштабирование всего блока часов (100% = стандарт) -->
+			</div>
+
+			<div class="form-row">
+				<label>Ширина (px):</label>
+				<input type="number" id="clock-width" min="100" max="300" step="5" value="170">
+				<!-- Ширина блока часов в пикселях -->
+			</div>
+
+			<div class="form-row">
+				<label>Высота (px):</label>
+				<input type="number" id="clock-height" min="100" max="300" step="5" value="170">
+				<!-- Высота блока часов в пикселях -->
+			</div>
+
+			<div class="form-row">
+				<label>Скругление (%):</label>
+				<input type="number" id="clock-border-radius" min="0" max="50" step="1" value="50">
+				<!-- 50% = идеальный круг, 0% = квадрат -->
+			</div>
+
+			<!-- ФОРМАТ ВРЕМЕНИ -->
+			<div class="form-row">
+				<label>Формат времени:</label>
+				<div class="time-format-toggle">
+					<button type="button" class="format-btn" data-format="24">24ч</button>
+					<button type="button" class="format-btn" data-format="12">12ч</button>
+				</div>
+				<!-- 24ч = 14:30:00, 12ч = 02:30:00 PM -->
+			</div>
+
+			<!-- НАСТРОЙКИ ШРИФТА (РАЗМЕРЫ, ОТСТУПЫ) -->
+			<h3>Настройки шрифта</h3>
+
+			<div class="form-row">
+				<label>Шрифт дня (px):</label>
+				<input type="number" id="clock-day-font-size" min="8" max="40" step="1" value="14">
+				<!-- Размер текста для названия дня недели -->
+			</div>
+
+			<div class="form-row">
+				<label>Шрифт времени (px):</label>
+				<input type="number" id="clock-time-font-size" min="12" max="60" step="1" value="24">
+				<!-- Размер текста для времени (самый крупный) -->
+			</div>
+
+			<div class="form-row">
+				<label>Шрифт даты (px):</label>
+				<input type="number" id="clock-date-font-size" min="8" max="40" step="1" value="16">
+				<!-- Размер текста для даты -->
+			</div>
+
+			<div class="form-row">
+				<label>Отступ день-время (px):</label>
+				<input type="number" id="clock-gap1" min="0" max="50" step="1" value="5">
+				<!-- Расстояние между днём и временем -->
+			</div>
+
+			<div class="form-row">
+				<label>Отступ время-дата (px):</label>
+				<input type="number" id="clock-gap2" min="0" max="50" step="1" value="5">
+				<!-- Расстояние между временем и датой -->
+			</div>
+
+			<div class="form-row">
+				<label>Цвет текста:</label>
+				<input type="color" id="clock-text-color" value="#ffffff">
+				<!-- HEX цвет для всего текста внутри часов -->
+			</div>
+
+			<!-- КАСТОМНЫЙ СЕЛЕКТ ШРИФТОВ -->
+			<!-- Это замена нативному select, который крашил Wallpaper Engine -->
+			<div class="form-row">
+				<label>Шрифт:</label>
+				<div class="custom-select" id="font-select">
+					<div class="custom-select-trigger">Arial</div>
+					<div class="custom-select-options">
+						<div data-value="'Orbitron', monospace">Orbitron</div>
+						<div data-value="'Roboto', sans-serif">Roboto</div>
+						<div data-value="'Courier New', monospace">Courier New</div>
+						<div data-value="'Arial', sans-serif">Arial</div>
+						<div data-value="'Verdana', sans-serif">Verdana</div>
+						<div data-value="'Impact', sans-serif">Impact</div>
+						<div data-value="'Times New Roman', serif">Times New Roman</div>
+						<div data-value="'Georgia', serif">Georgia</div>
+						<div data-value="'Comic Sans MS', cursive">Comic Sans MS</div>
+						<div data-value="'Monaco', monospace">Monaco</div>
+						<div data-value="'Segoe UI', sans-serif">Segoe UI</div>
+						<div data-value="'Tahoma', sans-serif">Tahoma</div>
+						<div data-value="'Trebuchet MS', sans-serif">Trebuchet MS</div>
+						<div data-value="'Lucida Console', monospace">Lucida Console</div>
+						<div class="custom-font-divider">──────────</div>
+						<div data-value="custom" id="custom-font-option">📁 Загрузить свой шрифт...</div>
+					</div>
+				</div>
+				<!-- Можно загрузить свой .ttf или .otf файл с компьютера -->
+			</div>
+
+			<!-- СВЕЧЕНИЕ И ПРОЗРАЧНОСТЬ -->
+			<div class="form-row">
+				<label>Свечение:</label>
+				<input type="color" id="clock-glow" value="#00ffff">
+				<!-- Цвет неонового свечения вокруг текста -->
+			</div>
+
+			<div class="form-row">
+				<label>Яркость свечения (px):</label>
+				<input type="number" id="clock-glow-intensity" min="0" max="20" step="1" value="6">
+				<!-- 0 = свечение выключено, 20 = очень яркое -->
+			</div>
+
+			<div class="form-row">
+				<label>Прозрачность фона (%):</label>
+				<input type="number" id="clock-bg-opacity" min="0" max="100" step="5" value="30">
+				<!-- 0% = полностью прозрачный, 100% = чёрный фон -->
+			</div>
+			<!-- ВЫБОР СЛОЯ ЧАСОВ (КАСТОМНЫЙ СЕЛЕКТ, КАК ДЛЯ ШРИФТА) -->
+			<!-- ВЫБОР СЛОЯ ЧАСОВ (КАСТОМНЫЙ СЕЛЕКТ) -->
+			<div class="form-row">
+				<label>Слой часов:</label>
+				<div class="custom-select-layer" id="layer-select">
+					<div class="custom-select-layer-trigger">Нормальный</div>
+					<div class="custom-select-layer-options">
+						<div data-layer="normal">Нормальный</div>
+						<div data-layer="stars">За звёздами</div>
+						<div data-layer="back">За астероидами</div>
+						<div data-layer="space">За космосом</div>
+					</div>
+				</div>
+			</div>
+			<div class="button-row">
+				<button id="reset-clock-pos" class="settings-btn">Сбросить позицию</button>
+				<button id="reset-clock-settings" class="settings-btn">Сбросить всё</button>
+			</div>
+		</div>
+
+		<!-- ========================================= -->
+		<!-- 6. СКРЫТЫЙ ИНПУТ ДЛЯ ЗАГРУЗКИ ШРИФТОВ     -->
+		<!-- ========================================= -->
+		<!-- Появляется только при клике на "Загрузить свой шрифт" -->
+		<input type="file" id="font-upload" accept=".ttf,.otf,.woff,.woff2" style="display: none;">
+
+		<!-- ========================================= -->
+		<!-- 7. БЛОК ЧАСОВ (ПЕРЕТАСКИВАЕМЫЙ)           -->
+		<!-- ========================================= -->
+		<!-- Часы можно перетаскивать мышью, позиция сохраняется -->
+		<div class="planet-clock" id="planetClock">
+			<div class="clock-day" id="clockDay">Понедельник</div>
+			<div class="clock-time" id="clockTime">00:00</div>
+			<div class="clock-date" id="clockDate">Январь 1</div>
+		</div>
+
+		<!-- ========================================= -->
+		<!-- 8. ФОНОВЫЕ СЛОИ (ЭФФЕКТ ПАРАЛЛАКСА)       -->
+		<!-- ========================================= -->
+		<!-- Каждый слой двигается с разной скоростью -->
+		<div class="space-bg"></div> <!-- Далёкий космос (очень медленно) -->
+		<div class="stars-bg"></div> <!-- Звёзды (медленно) -->
+		<div class="asteroids"></div> <!-- Астероиды (быстро) -->
+		<div class="specs-bg"></div> <!-- Блики/спецэффекты (очень быстро) -->
+
+		<!-- ========================================= -->
+		<!-- 9. CANVAS ДЛЯ ОТРИСОВКИ НЛО И ДЫМА        -->
+		<!-- ========================================= -->
+		<!-- Здесь рисуется НЛО и анимируются частицы дыма -->
+		<canvas class="canvas js-canvas" width="500" height="500"></canvas>
+
+		<!-- ========================================= -->
+		<!-- 10. ПОДКЛЮЧЕНИЕ СКРИПТОВ (JS)             -->
+		<!-- ========================================= -->
+		<!-- ПОРЯДОК ВАЖЕН! Скрипты загружаются сверху вниз -->
+
+		<!-- Основная логика: движение НЛО, генерация дыма, сохранение настроек -->
+		<script src="js/main.js"></script>
+
+		<!-- Логика панелей настроек: открытие/закрытие, переключение категорий -->
+		<script src="js/settings.js"></script>
+
+		<!-- Логика часов: время, перетаскивание, все настройки часов -->
+		<script src="js/clock.js"></script>
+
+		<!-- Логика кнопки с крестиком: автоскрытие кнопки настроек, подсказка -->
+		<script src="js/ui.js"></script>
+	</div>
+</body>
+
+</html>
